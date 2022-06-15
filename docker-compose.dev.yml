@@ -1,0 +1,25 @@
+  version: '3'
+
+  services:
+
+    mysqldb:
+      container_name: url_shortener_mysqldb
+      image: mysql:8.0.29
+      restart: always
+      environment:
+        - MYSQL_DATABASE=url_shortener
+        - MYSQL_USER=url_shortener
+        - MYSQL_PASSWORD=url_shortener
+      ports:
+        - "127.0.0.1:3306:3306"
+      volumes:
+        - ./.docker/mysqldb-data:/var/lib/mysql
+
+    redis:
+      container_name: url_shortener_redisdb
+      image: redis:6.2.7
+      restart: always
+      ports:
+        - "127.0.0.1:6379:6379"
+      volumes:
+        - ./.docker/redis-data:/data
