@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UrlController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UrlController::class, 'createForm'])->name('url.createForm');
+Route::get('/{link}', [UrlController::class, 'linkRedirect'])->name('url.linkRedirect');
+Route::get('/stats/{url:stat_link}', [UrlController::class, 'stats'])->name('url.stats');
